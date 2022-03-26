@@ -1,7 +1,7 @@
 {
   "name": "admrwe",
   "version": "1.0.0",
-  "description": "",
+  "description": "Personal website for Adam Rowe.",
   "main": "index.js",
   "scripts": {
     "watch:sass": "sass --watch src/sass:public/css",
