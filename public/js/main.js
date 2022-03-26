@@ -1,14 +1,13 @@
-document.body.className += ' fade-out';
+document.body.className += ' fade-out'
 
 function preloader() {
-    document.body.classList.remove("fade-out");
+    document.body.classList.remove('fade-out')
 }
 
-window.onload = preloader;
+window.onload = preloader
 
-
-(function () {
+;(function () {
     var ll = new LazyLoad({
-        elements_selector: ".lazy"
-    });
-})();
+        elements_selector: '.lazy',
+    })
+})()
