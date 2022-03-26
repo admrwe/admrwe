@@ -1,0 +1,278 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+// Colors
+$primary: #c44b3b;
+$secondary: #ad423a;
+$light-text: white;
+$dark-text: $primary;
+$light-bg: white;
+$dark-bg: $primary;
+
+body {
+    background-color: $dark-bg;
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity 1s;
+
+    &.fade-out {
+        opacity: 0;
+    }
+}
+
+.page__bg {
+    cursor: default;
+    background-color: $dark-bg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+
+    .name-animation {
+        font-size: 40em;
+        line-height: .25;
+    
+        div {
+            color: transparent;
+            -webkit-text-stroke: 3px $secondary;
+    
+            &:nth-child(1) { 
+                animation: stretch1 6s ease-in-out alternate infinite;
+            }
+    
+            &:nth-child(2) { 
+                animation: stretch2 4s ease-in-out alternate-reverse infinite;
+            }
+        }
+    }
+}
+
+// Info
+.info {
+    color: $light-text;
+    position: fixed;
+    left: 2rem;
+    bottom: 2rem;
+    z-index: 2;
+
+    .small {
+        font-size: .85rem;
+    }
+}
+
+// Main navigation
+.links {
+    list-style-type: none;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    right: 2rem;
+    top: 2rem;
+    text-align: right;
+    z-index: 2;
+
+    li {
+        margin-bottom: .4rem;
+
+        &.separator {
+            padding-bottom: .8rem;
+        }
+    }
+
+    a {
+        color: $light-text;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+
+        &:hover,
+        &:focus {
+            // color: rgb(255, 198, 193);
+            outline: none;
+            transition: all .2s;
+            border-bottom: 2px solid $light-text;
+        }
+    }
+}
+
+// Modal visibility
+#about,
+#gramaphone,
+#s-and-c,
+#logos,
+#posters {
+    visibility: hidden;
+    opacity: 0;
+    transition: all .2s;
+    z-index: -1;
+
+    &:target {
+        visibility: visible;
+        opacity: 1;
+        z-index: 10;
+    }
+}
+
+// Modal template
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+
+    a.modal__close {
+        color: $primary;
+        text-decoration: none;
+        position: absolute;
+        font-size: 2rem;
+        line-height: 0.7;
+        top: 4rem;
+        right: 4rem;
+        z-index: 2;
+        border: 2px solid transparent;
+        transition: all .2s;
+
+        &:hover {
+            color: $secondary;
+        }
+
+        &:focus {
+            outline: none;
+            border: 2px solid $primary;
+        }
+    }
+
+    .modal__content {
+        background-color: $light-bg;
+        position: absolute;
+        top: 2rem;
+        bottom: 2rem;
+        right: 2rem;
+        left: 2rem;
+        margin: 0;
+        padding: 4rem;
+        overflow: auto;
+        z-index: 1;
+        color: $dark-text;
+
+        a {
+            color: $primary;
+            text-decoration: none;
+            border-bottom: 0 solid transparent;
+            font-weight: 700;
+            transition: all .2s;
+    
+            &:hover,
+            &:focus {
+                outline: none;
+                border-bottom: 2px solid $primary;
+            }
+        }
+    
+        h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0 0 1rem;
+        }
+    
+        h3 {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0 0 1rem;
+        }
+    
+        p {
+            font-size: 1.2rem;
+            margin: 0 0 2rem;
+            max-width: 800px;
+        }
+    
+        figure {
+            margin: 0 0 2rem;
+    
+            img {
+                max-width: 900px;
+                width: 100%;
+                opacity: 0;
+            }
+
+            img:not(.initial) {
+                transition: opacity 1s;
+            }
+
+            img.initial,
+            img.loaded,
+            img.error {
+                opacity: 1;
+            }
+        
+            img:not([src]) {
+                visibility: hidden;
+            }
+    
+            figcaption {
+                font-size: .8rem;
+                font-style: italic;
+                color: #a53131;
+            }
+        }
+    }
+
+    .modal__bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: transparent;
+    }
+}
+
+// Media Queries
+@media only screen and (max-width: 600px) {
+    .name-animation {
+        font-size: 26em;
+        transform: rotate(90deg);
+    }
+
+    .links {
+        font-size: 1.4rem;
+        line-height: 1.8;
+    }
+
+    .modal {
+        a.modal__close {
+            top: 1rem;
+            right: 1rem;
+            font-size: 2.4rem;
+        }
+
+        .modal__content {
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            padding: 2rem;
+        }
+    }
+}
+
+// Animations
+@keyframes stretch1 {
+    0% { transform: skew(10deg, 0deg) rotateX(0deg); }
+    100% { transform: skew(30deg, 20deg) rotateX(360deg); }
+}
+
+@keyframes stretch2 {
+    0% { transform: skew(-20deg, -10deg) rotateX(60deg); }
+    100% { transform: skew(20deg, 30deg) rotateX(300deg); }
+}
