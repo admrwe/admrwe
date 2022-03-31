@@ -7,7 +7,7 @@ Repository for my personal website: https://admrwe.com
 | Command     | Description                                               |
 | ----------- | --------------------------------------------------------- |
 | `npm start` | Starts local server with hot reloading and SASS watching. |
-| `npm build` | Compiles the `/public/` directory.                        |
+| `npm run build` | Compiles the `/public/` directory.                        |
 
 ## Built With
 
